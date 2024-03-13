@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { removeProduct } from '../services/apiService';
-import ConfirmModal from './ConfirmModal';
+import React, { useState } from "react";
+import { removeProduct } from "../services/apiService";
+import ConfirmModal from "./ConfirmModal";
 
 const DeleteButton = ({ productId, onProductDeleted }) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleDelete = async () => {
     try {
@@ -18,8 +18,8 @@ const DeleteButton = ({ productId, onProductDeleted }) => {
         onProductDeleted(data);
       }
     } catch (err) {
-      console.error('Failed to delete product:', err);
-      setError('Failed to delete product');
+      console.error("Failed to delete product:", err);
+      setError("Failed to delete product");
       setLoading(false);
     } finally {
       setShowConfirmModal(false); // Close modal after confirmation
@@ -28,8 +28,12 @@ const DeleteButton = ({ productId, onProductDeleted }) => {
 
   return (
     <>
-      <button className="btn btn-danger" onClick={() => setShowConfirmModal(true)} disabled={loading}>
-        {loading ? 'Deleting...' : 'Delete Product'}
+      <button
+        className="btn btn-danger"
+        onClick={() => setShowConfirmModal(true)}
+        disabled={loading}
+      >
+        {loading ? "Deleting..." : "Delete Product"}
       </button>
       {error && <p>{error}</p>}
       <ConfirmModal
